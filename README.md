@@ -23,5 +23,5 @@ You will need to make sure you have the below extensions enabled in your php.ini
         proxy: 'path to proxy/proxy.php'
     });
 
-exemple
+##exemple
 http://localhost/sistema/proxy.php?url=http://google/foto.png&callback=html2canvas_0
