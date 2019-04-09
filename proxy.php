@@ -4,8 +4,7 @@ header('Access-Control-Max-Age:' . 5 * 60 * 1000);
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Request-Method: *');
 header('Access-Control-Allow-Methods: OPTIONS, GET');
-header('Access-Control-Allow-Headers: *');
-header("Content-Type: application/javascript");
+
 
 // Url params
 $url = $_GET['url'];
@@ -19,11 +18,8 @@ if (!in_array($file_details["mime_type"], array("image/jpg", "image/jpeg", "imag
     print "error:Application error";
 } else
 {
-    $re_encoded_image = sprintf(
-            'data:%s;base64,%s', $file_details["mime_type"], base64_encode($file_details["data"])
-    );
-
-    print "{$callback}(" . json_encode($re_encoded_image) . ")";
+    Header("content-type: {$file_details["mime_type"]}");
+    print $file_details["data"];
 }
 
 function get_url_details($url, $attempt = 1, $callback = "")
